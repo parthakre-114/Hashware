@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Keshav Sports</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		
+		header {
+			background-color: #fff9f9;
+			color:  #222121;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		
+		nav ul {
+			list-style: none;
+			display: flex;
+			align-items: center;
+		}
+		
+		nav li {
+			margin: 0 20px;
+		}
+		
+		nav a {
+			color:  #080808;
+			text-decoration: none;
+		}
+		
+		main {
+			padding: 50px;
+		}
+		
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 20px;
+		}
+		
+		p {
+			font-size: 1.2rem;
+			margin-bottom: 20px;
+		}
+		
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			grid-gap: 20px;
+		}
+		
+		li {
+			background-color: #cbc2c2;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(234, 231, 231, 0.1);
+			text-align: center;
+		}
+		
+		h3 {
+			font-size: 1.5rem;
+			margin-bottom: 10px;
+		}
+		
+		.price {
+			font-size: 1.2rem;
+			color: #ff6600;
+			margin-bottom: 10px;
+		}
+		
+		button {
+			background-color: #3e3b3b;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 20px;
+			font-size: 1.2rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		
+		button:hover {
+			background-color: #ff6600;
+			color: #f7f0f0;
+		}
+		
+		footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Keshav Sports</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Products</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="FeedBack.html">Feedback</a></li> <!-- Updated link to Feedback -->
+			</ul>
+		</nav>
+	</header>
+	
+	<main>
+		<h2>Featured Products</h2>
+		<ul>
+			<li>
+				<h3>Cricket Bat</h3>
+				<p>The perfect bat for any cricket player</p>
+				<p class="price">3599₹</p>
+			<button>Add to Cart</button>
+		</li>
+		<li>
+			<h3>Cricket Ball</h3>
+			<p>A high-quality cricket ball for all levels of play</p>
+			<p class="price">699₹</p>
+			<button>Add to Cart</button>
+		</li>
+		<li>
+			<h3>Cricket Helmet</h3>
+			<p>Stay protected while playing with this durable cricket helmet</p>
+			<p class="price">1999₹</p>
+			<button>Add to Cart</button>
+		</li>
+		<li>
+			<h3>Cricket Gloves</h3>
+			<p>Get a better grip with these comfortable cricket gloves</p>
+			<p class="price">599₹</p>
+			<button>Add to Cart</button>
+		</li>
+	</ul>
+</main>
+<footer>
+	<p>&copy; 2023 Keshav Sports. All rights reserved.</p>
+</footer>
+</body>
+</html>

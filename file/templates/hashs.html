@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashWare</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Workbench&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("https://wallpapercave.com/wp/wp6492963.jpg") no-repeat;
+      background-size: cover;
+      height: 100vh;
+      background-attachment: fixed;
+      /* Ensures full viewport height */
+      background-image: url('/static/back.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image-opacity:0.5; 
+            background-color: rgba(255,255,255,0.6);
+    }
+
+
+    .navbar-light .navbar-brand {
+      color: #fff;
+      font-size: 25px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .active>.nav-link,
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link.show,
+    .navbar-light .navbar-nav .show>.nav-link {
+      color: #fff;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+      color: #fff;
+    }
+
+    .navbar-toggler {
+      background: #fff;
+    }
+
+    .navbar-nav {
+      text-align: center;
+    }
+
+    .nav-link {
+      padding: .2rem 1rem;
+    }
+
+    .nav-link.active,
+    .nav-link:focus {
+      color: #fff;
+    }
+
+    .navbar-toggler {
+      padding: 1px 5px;
+      font-size: 18px;
+      line-height: 0.3;
+    }
+
+    .navbar-light .navbar-nav .nav-link:focus,
+    .navbar-light .navbar-nav .nav-link:hover {
+      color: #fff;
+    }
+
+    .srna i {
+      color: #fff;
+      transition: 1s;
+
+    }
+
+    .srna:hover i {
+      color: rgb(109, 4, 88);
+      transition: 1s;
+    }
+
+    .surl {
+      transition: 1s;
+      color: #fff;
+    }
+
+    .surl:hover {
+      transition: 1s;
+      color: rgb(109, 4, 88);
+      text-decoration: underline;
+    }
+
+    /* CSS for default styling */
+    .custom-container {
+      width: 80%;
+      height: 300px;
+      margin-top: 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .box1,
+    .box2 {
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.395);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+    }
+
+    .box1 {
+      width: 30%;
+      border: 1.5px solid rgb(88, 3, 72);
+    }
+
+    .box2 {
+      width: 65%;
+      border: 1.3px solid rgb(88, 3, 72);
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      .custom-container {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+      }
+
+      .box1,
+      .box2 {
+        width: 100%;
+        margin-bottom: 10px;
+        min-height: 200px;
+        /* Adjust margin as needed */
+      }
+    }
+
+
+    #terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #1e1e1e00;
+      border-radius: 10px;
+      color: green;
+      border: 2px solid #00ff00;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(0px);
+    }
+
+    #toolbar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+
+    #close {
+      background-color: #ff3b3b;
+    }
+
+    #minimize {
+      background-color: #ffdb58;
+    }
+
+    #cut {
+      background-color: #00ff00;
+    }
+
+    #output {
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    #prompt {
+      color: #00ff00;
+      white-space: nowrap;
+    }
+
+    #input {
+      color: #ffffff;
+      outline: none;
+      border: none;
+      background: transparent;
+      margin-left: 5px;
+      display: inline;
+      border: 1px solid green;
+    }
+
+    .form-control {
+      background-color: #222;
+      border-color: #007700;
+      /* Green border */
+      color: #00ff00;
+      /* Green text */
+    }
+
+    .form-control:focus {
+      background-color: #333;
+      border-color: #00ff00;
+      /* Bright green border on focus */
+      box-shadow: none;
+    }
+
+    .form-control::placeholder {
+      color: #ff0000 ;
+      /* Green placeholder text */
+      opacity: ;
+      font-size:30px;
+    }
+
+    .btn {
+      background-color: #007700;
+      /* Green button */
+      border-color: #007700;
+      /* Green border */
+    }
+
+    .btn:hover {
+      background-color: #00ff00;
+      /* Bright green hover */
+      border-color: #00ff00;
+      /* Bright green border on hover */
+    }
+    ::placeholder {
+      color: #ff0000 ; /* Change the color of the placeholder text */
+  }
+    .alpha {
+      width: 73%;
+      max-width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.395);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      border: 1.5px solid rgb(88, 3, 72);
+      margin-top: 8%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 865px) {
+      .alpha {
+        margin-top: 12%;
+      }
+    }
+
+    @media (max-width: 625px) {
+      .alpha {
+        margin-top: 20%;
+      }
+    }
+
+    @media(max-width :584px) {
+      .text_shadows {
+        font-size: 20px;
+      }
+    }
+
+    .alpha>div {
+      text-align: left;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 95%;
+    }
+
+    .alpha h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .alpha h2 span {
+      color: #00ff00;
+      font-size: 31px;
+    }
+
+    .alpha p {
+      font-size: 16px;
+    }
+
+    .alpha button {
+      background-color: #230130;
+      color: #dbb9f1;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: 1s;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    :root {
+      --color-primary: #000000;
+      --color-secondary: #000000;
+      --color-tertiary: #0e8646;
+      --color-quaternary: #482828;
+      --color-quinary: #6e34a0;
+      /*
+  --color-primary: #5192ED;
+  --color-secondary: #69A1F0;
+  --color-tertiary: #7EAEF2;
+  --color-quaternary: #90BAF5;
+  --color-quinary: #A2C4F5;
+  */
+    }
+
+    input[type="text"] {
+      color: black; /* Change the text color of the input */
+  }
+    .content {
+      display: flex;
+      align-content: center;
+      background-color: #00ff0037;
+      border-radius: 8px;
+      border: 1px solid green;
+      justify-content: center;
+    }
+
+    .text_shadows {
+      text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
+        9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
+      font-family: bungee, sans-serif;
+      font-weight: 400;
+      font-size: 80px;
+      text-transform: uppercase;
+      font-size: calc(2rem + 5vw);
+      text-align: center;
+      margin: 0;
+      color: var(--color-primary);
+      color: transparent;
+      background-color: white;
+      background-clip: text;
+      animation: shadows 1.2s ease-in infinite, move 1.2s ease-in infinite;
+      letter-spacing: 0.4rem;
+    }
+
+    @keyframes shadows {
+      0% {
+        text-shadow: none;
+      }
+
+      10% {
+        text-shadow: 3px 3px 0 var(--color-secondary);
+      }
+
+      20% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary);
+      }
+
+      30% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+      }
+
+      40% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+          12px 12px 0 var(--color-quinary);
+      }
+
+      50% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+          12px 12px 0 var(--color-quinary);
+      }
+
+      60% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+          12px 12px 0 var(--color-quinary);
+      }
+
+      70% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+      }
+
+      80% {
+        text-shadow: 3px 3px 0 var(--color-secondary),
+          6px 6px 0 var(--color-tertiary);
+      }
+
+      90% {
+        text-shadow: 3px 3px 0 var(--color-secondary);
+      }
+
+      100% {
+        text-shadow: none;
+      }
+    }
+
+    @keyframes move {
+      0% {
+        transform: translate(0px, 0px);
+      }
+
+      40% {
+        transform: translate(-12px, -12px);
+      }
+
+      50% {
+        transform: translate(-12px, -12px);
+      }
+
+      60% {
+        transform: translate(-12px, -12px);
+      }
+
+      100% {
+        transform: translate(0px, 0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #0000006d;">
+    <div class="container">
+      <a class="navbar-brand" href="#">HashWare</a>
+      <ul
+        style="display: flex; justify-content: center; align-items: center; margin: auto; list-style: none; margin-left: -40px;">
+        <li class="nav-item active ull">
+          {% comment %} <a class="nav-link surl" href="#">About Us</a> {% endcomment %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-lin surl" href="logins.html">Log Out</a>
+        </li>
+      </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="runner">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto" style="font-size: 30px;">
+          <li class="nav-item">
+            <a class="nav-link srna" href="#"><i class='bx bxl-instagram-alt'></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link srna" href="#"><i class='bx bxl-linkedin-square'></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link srna" href="#"><i class='bx bxl-github'></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container alpha" id="naval_bar">
+    <div>
+      <h2>Explore the World of <span>Malware</span></h2>
+      <p>Discover the fascinating realm of malware, where information security meets mathematics and technology.
+      </p>
+      
+    </div>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+  </div>
+
+
+
+  <div class="container custom-container">
+    <div class="box1">
+      <div id="terminal">
+        <div id="toolbar">
+          <div id="close" class="button"></div>
+          <div id="minimize" class="button"></div>
+          <div id="cut" class="button"></div>
+        </div>
+        <div id="output"></div>
+        <div id="prompt">root@kali ~ $ <input type="text" id="input" autofocus></div>
+      </div>
+    </div>
+    <div class="box2">
+      <div class="row justify-content-center" style="height: 100%;">
+        <div class="col-md-8" style="margin: auto;">
+          <form method= "post" action="hashs.html" >
+            <div class="form-group">
+              <label for="input" style="color:red;" class="sr-only" > Enter your Hash:</label>
+              <input type="text" name="hash" class="form-control" id="input" placeholder="Enter your Signature...">
+            </div>
+            <input type="submit" class="btn btn-block" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid"
+    style="background-color: #3b1246b0;display: flex; justify-content: center; align-items: center;flex-direction: column; margin-top: 5%;">
+    <div class="row justify-content-center align-items-center"
+      style="margin-top: 5%; width: auto; padding: 20px; min-width: 75%; border-radius: 10px; border: 1px solid rgb(46, 194, 46); background-color: #00ff002a;">
+      <div class="col-md-4" style="display: flex; justify-content: center; margin-top: 30px;">
+        <h2 class="text_shadow" style=" color: #00ff00; font-family: 'Workbench', sans-serif;">
+          #Malwares</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center align-items-center" style="margin-top: 40px;">
+      <div class="col-md-4">
+        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/computer-virus-protection-5733313-4812705.png?f=webp"
+          alt="" class="img-fluid">
+      </div>
+      <div class="col-md-5"
+        style="background-color: #527fd8cb; border-radius: 10px; border: 1px solid black; padding: 20px;">
+        <h1 class="text-center" style="color: #535354; font-family: 'Workbench', sans-serif;">How Malware Hash Scanning
+          Algorithm Works</h1>
+        <p style="text-align: justify; line-height: 1.5; color: white;">
+          A virus hash scanning algorithm works by generating a unique hash value for each file on a computer system.
+          This hash value is like a digital fingerprint of the file's content. When a file is scanned for viruses, its
+          hash value is compared against a database of known virus hash values.
+        </p>
+        <p style="text-align: justify; line-height: 1.5; color: white;">
+          If the hash value of the file matches any known Malware hash value in the database, it returns all the info relevant to the Malware. This allows antivirus software to quickly identify and quarantine or remove
+          malicious files from the system.
+        </p>
+        <p style="text-align: justify; line-height: 1.5; color: white;">
+        
+        </p>
+        <p style="text-align: justify; line-height: 1.5; color: white;">
+          Enter Valid Hash. 
+          All the information fetched by this website is for ethical practices.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const output = document.getElementById('>output');
+    const input = document.getElementById('input');
+    const prompt = document.getElementById('prompt');
+
+    const commands = {
+      help: "Available commands: help, clear",
+      clear: function () {
+        output.innerHTML = '';
+      }
+    };
+
+    input.addEventListener('keyup', function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        const command = input.value;
+        output.innerHTML += `<div>${prompt.innerText}${command}</div>`;
+        input.value = '';
+        executeCommand(command);
+        output.scrollTop = output.scrollHeight;
+      }
+    });
+
+    function executeCommand(command) {
+      if (command.trim() === '') return;
+
+      const args = command.split(' ');
+      const cmd = args.shift().toLowerCase();
+
+      if (cmd in commands) {
+        if (typeof commands[cmd] === 'function') {
+          commands[cmd]();
+        } else {
+          output.innerHTML += `<div>${commands[cmd]}</div>`;
+        }
+      } else {
+        output.innerHTML += `<div>Command not found: ${command}</div>`;
+      }
+      output.scrollTop = output.scrollHeight;
+    }
+  </script>
+  <script>
+    let flag = 0;
+    document.getElementById("runner").addEventListener("click", function () {
+      var targetDiv = document.getElementById("naval_bar");
+      if (flag === 1) {
+        targetDiv.style.transition = "margin-top 0.5s ease"; // Apply transition
+        targetDiv.style.marginTop = "25%";
+        flag = 0;
+      } else {
+        targetDiv.style.transition = "margin-top 0.5s ease"; // Apply transition
+        targetDiv.style.marginTop = "300px";
+        flag = 1;
+      }
+      // Reset transition after a delay
+      setTimeout(() => {
+      }, 500); // 500ms delay, same as transition duration
+    });
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

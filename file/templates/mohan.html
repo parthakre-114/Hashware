@@ -1,0 +1,29 @@
+<html>
+    <body>
+      <p> {{ msg }}</p>
+        <form action='mohan.html' method='post'>
+            id<input type="text" name="id">
+       name <input type="text" name='name'>
+        <input type='submit' value='Update' name='submit'>
+        </form>
+
+
+        <form action='mohan.html' method='post'>
+           id <input type="text" name="id">
+       name <input type="text" name='name'>
+        <input type='submit' value='create' name='submit'>
+        </form>
+
+        <form action='mohan.html' method='post'>
+           id <input type="text" name="id">
+        name <input type="text" name='name'>
+         <input type='submit' value='delete' name='submit'>
+         </form>
+{% for x in dic %}
+         <ul>
+            <li> {{ x.id }}</li><li>{{ x.name }} </li>
+         </ul>
+         
+         {% endfor %}
+    </body>
+    </html>
